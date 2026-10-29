@@ -1,16 +1,20 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
-RUN apt-get update && apt-get install -y nodejs
+WORKDIR /usr/src/app
 
-RUN apt-get install -y curl
-
-RUN apt-get install -y npm
+RUN apt-get update && apt-get install -y curl
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 
+RUN apt-get install -y nodejs
+
 RUN npm install -g serve
 
+
 COPY . .
+
+RUN npm install
+RUN npm run build
 
 EXPOSE 5001
 
