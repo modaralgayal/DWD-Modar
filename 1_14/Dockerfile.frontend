@@ -1,8 +1,9 @@
 FROM ubuntu:24.04
 
-WORKDIR /api
+WORKDIR /usr/src/app
 
-ENV REACT_APP_BACKEND_URL=http://example.com
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
 
 RUN apt update
 RUN apt install -y curl
