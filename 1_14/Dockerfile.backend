@@ -1,1 +1,17 @@
+FROM golang:1.16
+
+WORKDIR /usr/src/app
+
+RUN apt-get update
+
+ENV REACT_APP_BACKEND_URL=http://example.com
+ENV REQUEST_ORIGIN=http://example.com
+
+COPY 1_13 .
+
+RUN go build
+
+EXPOSE 8080
+
+CMD [ "./server" ]
 # use here COPY 1_13 .

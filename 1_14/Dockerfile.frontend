@@ -1,1 +1,20 @@
-# use here COPY 1_12 .
+FROM ubuntu:24.04
+
+WORKDIR /api
+
+ENV REACT_APP_BACKEND_URL=http://example.com
+
+RUN apt update
+RUN apt install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
+RUN apt install -y nodejs
+
+COPY 1_12  .
+
+RUN npm install
+RUN npm run build
+RUN npm install -g serve
+
+EXPOSE 5001
+
+CMD ["serve", "-s", "-l", "5001", "build"]
